@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./fullComment.module.css";
 import { getOneComment } from "../../services/getOneCommentsService";
 
-const FullComment = ({ selectedCommentId, onDelete }) => {
+const FullComment = ({ selectedCommentId, onDelete, onEdit }) => {
    const [comment, setComment] = useState([]);
    const [isShow, setIsShow] = useState(false);
 
@@ -63,6 +63,7 @@ const FullComment = ({ selectedCommentId, onDelete }) => {
                   {/* edit secion */}
                   {isShow && (
                      <EditComment
+                        onEdit={onEdit}
                         id={selectedCommentId}
                         setIsShow={setIsShow}
                         setComment={setComment}
@@ -90,7 +91,7 @@ const FullComment = ({ selectedCommentId, onDelete }) => {
 
 export default FullComment;
 
-const EditComment = ({ id, setIsShow, setComment }) => {
+const EditComment = ({ onEdit, id, setIsShow, setComment }) => {
    const [newComment, setNewComment] = useState({
       name: "",
       email: "",
@@ -107,6 +108,7 @@ const EditComment = ({ id, setIsShow, setComment }) => {
             className={styles.form}
             onSubmit={(e) => {
                e.preventDefault();
+               onEdit(id, newComment, setComment);
                setIsShow(false);
             }}>
             <div className={styles.form__wrapper}>

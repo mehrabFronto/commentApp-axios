@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { getAllComments } from "../../services/getAllCommentsService";
 import { addNewComment } from "../../services/addNewCommentService";
 import { deleteComment } from "../../services/deleteCommentService";
+import { editComment } from "../../services/editCommentService";
 
 const CommentApp = () => {
    const [comments, setComments] = useState([]);
@@ -67,6 +68,26 @@ const CommentApp = () => {
       }
    };
 
+   const editHandler = async (id, newComment, setComment) => {
+      try {
+         // edit data
+         await editComment(id, newComment);
+
+         // get new data
+         const { data } = await getAllComments();
+
+         // set new data
+         setComments(data);
+
+         // update selected comment
+         setComment(newComment);
+
+         toast.success("comment successfully edited");
+      } catch (err) {
+         setError(true);
+      }
+   };
+
    return (
       <div className={styles.container}>
          <CommentsList
@@ -78,6 +99,7 @@ const CommentApp = () => {
          <FullComment
             selectedCommentId={selectedCommentId}
             onDelete={deleteHandler}
+            onEdit={editHandler}
          />
 
          <CommentForm onAddComment={postHandler} />
