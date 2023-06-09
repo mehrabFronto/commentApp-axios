@@ -1,0 +1,31 @@
+.comment__container{
+    width: 250px;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 15px;
+    border: 1px solid #bfdbf7;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+
+
+.name__container , 
+.email__container{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+}
+
+.name ,
+.email{
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis ;
+}

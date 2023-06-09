@@ -1,0 +1,154 @@
+.comment__container{
+    width: 100%;
+    background-color: #053c5e;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 30px;
+}
+
+.comment__wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: start;
+    border: 1px solid #bfdbf7;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.name__container ,
+.email__container , 
+.body__container {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.body__container p{
+    width: 400px;
+    height: 60px;
+    white-space: wrap;
+    overflow: auto;
+}
+
+.body__container p::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+    background-color: #053c5e;
+}
+
+.body__container p::-webkit-scrollbar-thumb{
+    background-color: #bfdbf7;
+    border-radius: 5px;
+}
+
+.message{
+    width: 100%;
+    background-color: #053c5e;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 30px;
+}
+
+.btnContainer{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn{
+    outline: none;
+    border-radius: 4px;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-weight: 600;
+}
+
+.btnContainer .delete{
+    border: 1px solid #db222a;
+    color: #db222a;
+}
+
+.btnContainer .edit{
+    border: none;
+    background-color: #1f7a8c;
+    color: #053c5e;
+    padding: 5px 15px;
+}
+
+.form{
+    width: 100%;
+    background-color: #053c5e;
+    padding: 15px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form__wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    gap: 15px;
+    border: 1px solid #bfdbf7;
+    border-radius: 6px;
+    width: 250px;
+    height: 300px;
+}
+
+
+.input__wrapper,
+.textArea__wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.input__wrapper input {
+    outline: none;
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+}
+
+.textArea__wrapper textarea{
+    outline: none;
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+}
+
+.btn__container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    gap: 20px;
+}
+
+.btn{
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.addBtn{
+    background-color: #bfdbf7;
+    color: #053c5e;
+}
+
+.cancelBtn{
+    background-color: transparent;
+    color: #bfdbf7;
+    border: 1px solid #bfdbf7;
+}
