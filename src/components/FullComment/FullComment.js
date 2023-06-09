@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./fullComment.module.css";
 import { getOneComment } from "../../services/getOneCommentsService";
 
-const FullComment = ({ selectedCommentId }) => {
+const FullComment = ({ selectedCommentId, onDelete }) => {
    const [comment, setComment] = useState([]);
    const [isShow, setIsShow] = useState(false);
 
@@ -69,7 +69,9 @@ const FullComment = ({ selectedCommentId }) => {
                      />
                   )}
                   <div className={styles.btnContainer}>
-                     <button className={`${styles.btn} ${styles.delete}`}>
+                     <button
+                        className={`${styles.btn} ${styles.delete}`}
+                        onClick={() => onDelete(setComment)}>
                         Delete
                      </button>
                      <button
