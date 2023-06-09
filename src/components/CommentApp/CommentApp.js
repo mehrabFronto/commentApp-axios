@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { getAllComments } from "../../services/getAllCommentsService";
 import { addNewComment } from "../../services/addNewCommentService";
+import { deleteComment } from "../../services/deleteCommentService";
 
 const CommentApp = () => {
    const [comments, setComments] = useState([]);
@@ -48,6 +49,24 @@ const CommentApp = () => {
       }
    };
 
+   const deleteHandler = async (setComment) => {
+      // delete data
+      try {
+         await deleteComment(selectedCommentId);
+         // get new data
+         const { data } = await getAllComments();
+         // set new data
+         setComments(data);
+         //  clear full comment section
+         setSelectedCommentId(undefined);
+         setComment([]);
+
+         toast.success("comment successfully deleted");
+      } catch (err) {
+         setError(true);
+      }
+   };
+
    return (
       <div className={styles.container}>
          <CommentsList
@@ -56,7 +75,10 @@ const CommentApp = () => {
             err={error}
          />
 
-         <FullComment selectedCommentId={selectedCommentId} />
+         <FullComment
+            selectedCommentId={selectedCommentId}
+            onDelete={deleteHandler}
+         />
 
          <CommentForm onAddComment={postHandler} />
       </div>
