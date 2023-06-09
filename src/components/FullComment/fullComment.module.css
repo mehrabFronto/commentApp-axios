@@ -27,7 +27,7 @@
 }
 
 .body__container p{
-    width: 400px;
+    width: 100%;
     height: 60px;
     white-space: wrap;
     overflow: auto;
@@ -79,6 +79,8 @@
     color: #053c5e;
     padding: 5px 15px;
 }
+
+/* edit form styles */
 
 .form{
     width: 100%;
