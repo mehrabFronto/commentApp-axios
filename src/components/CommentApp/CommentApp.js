@@ -3,7 +3,9 @@ import CommentsList from "../CommentsList/CommentsList";
 import FullComment from "../FullComment/FullComment";
 import CommentForm from "../CommentForm/CommentForm";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { getAllComments } from "../../services/getAllCommentsService";
+import { addNewComment } from "../../services/addNewCommentService";
 
 const CommentApp = () => {
    const [comments, setComments] = useState([]);
@@ -26,6 +28,26 @@ const CommentApp = () => {
       getComments();
    }, []);
 
+   const postHandler = async (comment, setComment) => {
+      // post new data
+      try {
+         await addNewComment({
+            ...comment,
+            postId: 1,
+         });
+         // get new data
+         const { data } = await getAllComments();
+         // set new data
+         setComments(data);
+         // clear the inputs
+         setComment({ name: "", email: "", body: "" });
+
+         toast.success("comment successfully added");
+      } catch (err) {
+         setError(true);
+      }
+   };
+
    return (
       <div className={styles.container}>
          <CommentsList
@@ -36,7 +58,7 @@ const CommentApp = () => {
 
          <FullComment selectedCommentId={selectedCommentId} />
 
-         <CommentForm />
+         <CommentForm onAddComment={postHandler} />
       </div>
    );
 };
