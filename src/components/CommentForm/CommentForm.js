@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./commentForm.module.css";
 
-const CommentForm = () => {
+const CommentForm = ({ onAddComment }) => {
    const [comment, setComment] = useState({ name: "", email: "", body: "" });
 
    const changeHandler = (e) => {
@@ -18,7 +18,10 @@ const CommentForm = () => {
          <h2 style={headerStyles}>Add New Comment</h2>
          <form
             className={styles.form}
-            onSubmit={(e) => console.log(comment)}>
+            onSubmit={(e) => {
+               e.preventDefault();
+               onAddComment(comment, setComment);
+            }}>
             {/* name */}
             <div className={styles.input__wrapper}>
                <label>name : </label>

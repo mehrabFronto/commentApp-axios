@@ -1,9 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./fullComment.module.css";
+import { getOneComment } from "../../services/getOneCommentsService";
 
-const FullComment = ({ selectedCommentId }) => {
+const FullComment = ({ selectedCommentId, onDelete, onEdit }) => {
    const [comment, setComment] = useState([]);
    const [isShow, setIsShow] = useState(false);
+
+   useEffect(() => {
+      // get and set selected comment
+      const getSelectedComment = async () => {
+         try {
+            const { data } = await getOneComment(selectedCommentId);
+            setComment(data);
+         } catch (err) {
+            console.log(err);
+         }
+      };
+      if (selectedCommentId) getSelectedComment();
+   }, [selectedCommentId]);
 
    const headerStyles = {
       color: "#053c5e",
@@ -49,13 +63,16 @@ const FullComment = ({ selectedCommentId }) => {
                   {/* edit secion */}
                   {isShow && (
                      <EditComment
+                        onEdit={onEdit}
                         id={selectedCommentId}
                         setIsShow={setIsShow}
                         setComment={setComment}
                      />
                   )}
                   <div className={styles.btnContainer}>
-                     <button className={`${styles.btn} ${styles.delete}`}>
+                     <button
+                        className={`${styles.btn} ${styles.delete}`}
+                        onClick={() => onDelete(setComment)}>
                         Delete
                      </button>
                      <button
@@ -74,7 +91,7 @@ const FullComment = ({ selectedCommentId }) => {
 
 export default FullComment;
 
-const EditComment = ({ id, setIsShow, setComment }) => {
+const EditComment = ({ onEdit, id, setIsShow, setComment }) => {
    const [newComment, setNewComment] = useState({
       name: "",
       email: "",
@@ -91,6 +108,7 @@ const EditComment = ({ id, setIsShow, setComment }) => {
             className={styles.form}
             onSubmit={(e) => {
                e.preventDefault();
+               onEdit(id, newComment, setComment);
                setIsShow(false);
             }}>
             <div className={styles.form__wrapper}>

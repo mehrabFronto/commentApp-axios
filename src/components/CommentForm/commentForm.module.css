@@ -1,5 +1,5 @@
 .form{
-    width: 500px;
+    width: 100%;
     background-color: #053c5e;
     padding: 15px;
     border-radius: 6px;
@@ -12,24 +12,36 @@
 
 .input__wrapper,
 .textArea__wrapper{
+    width: 100%;
     display: flex;
     align-items: start;
     gap: 10px;
 }
 
-.input__wrapper input {
+.input__wrapper input , 
+.textArea__wrapper textarea {
+    width: 50%;
     outline: none;
     padding: 5px;
-    border: none;
+    border: 1px solid #bfdbf7;
+    color: #bfdbf7;
     border-radius: 4px;
+    background-color: transparent;
+    transition: all 0.2s ease-in-out;
 }
 
 .textArea__wrapper textarea{
-    outline: none;
-    padding: 5px;
-    border: none;
-    border-radius: 4px;
+    width: 70%;
+    height: 80px;
+    resize: none;
 }
+
+.input__wrapper input:focus , 
+.textArea__wrapper textarea:focus{
+    background-color: #bfdbf7;
+    color: #053c5e;
+}
+
 
 .btn__container{
     width: 100%;
