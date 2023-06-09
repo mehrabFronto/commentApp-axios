@@ -1,9 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./fullComment.module.css";
+import { getOneComment } from "../../services/getOneCommentsService";
 
 const FullComment = ({ selectedCommentId }) => {
    const [comment, setComment] = useState([]);
    const [isShow, setIsShow] = useState(false);
+
+   useEffect(() => {
+      // get and set selected comment
+      const getSelectedComment = async () => {
+         try {
+            const { data } = await getOneComment(selectedCommentId);
+            setComment(data);
+         } catch (err) {
+            console.log(err);
+         }
+      };
+      if (selectedCommentId) getSelectedComment();
+   }, [selectedCommentId]);
 
    const headerStyles = {
       color: "#053c5e",
